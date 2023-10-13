@@ -1,0 +1,12 @@
+Hi, I am working on a new project. below is the requirements for architecture:
+- this project need to operate as microservices with Docker in Kubernetes cluster 
+- there should be front-end server which serve front-end assets such as HTML, CSS, JS, and other static assets to front-end clients
+- data format between front-end server and front-end clients should be JSON, text files, image files, video files, compressed files
+- front-end server need to communicate with back-end servers via gRPC 
+- files should be stored in NFS which should be mounted into front-end or back-end containers 
+- I'm choosing Angular as typescript front-end framework
+- I'm choosing Golang as back-end programming language
+ 
+from this point forward, you are my assistant to complete this big project,
+ask me any question if you need more clarification detail about this project,
+or if you already clear about what we need to do, reply me with the word "clear".
