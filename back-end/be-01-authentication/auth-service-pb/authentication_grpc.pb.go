@@ -4,7 +4,7 @@
 // - protoc             v4.24.4
 // source: authentication.proto
 
-package be_01_authentication
+package auth_service_pb
 
 import (
 	context "context"
