@@ -13,8 +13,11 @@ protoc --go_out=../back-end/be-01-authentication/auth-service-pb --go_opt=paths=
 
 ```
 
-- Generate protobuf for front-end:
+## Testing hello-world service:
 
 ```shell
+protoc --go_out=../back-end/be-01-authentication/auth-service-pb --go_opt=paths=source_relative \
+       --go-grpc_out=../back-end/be-01-authentication/auth-service-pb --go-grpc_opt=paths=source_relative \
+       ./authentication.proto
 
 ```

@@ -59,6 +59,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+
+          },
           "configurations": {
             "production": {
               "browserTarget": "fe-01-project-one:build:production"

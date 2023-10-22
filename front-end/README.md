@@ -55,7 +55,7 @@ ng add @angular/common
 2. Copy your `authentication.proto` file into the `src/app/proto` directory.
 
    ```shell
-   cp ../proto/authentication.proto fe-01-project-one/src/app/proto
+   cp ../../proto/authentication.proto src/app/proto/
    ```
 
 3. To use the generated TypeScript definitions in your Angular app, you need to convert the gRPC service definitions into TypeScript.
@@ -68,7 +68,7 @@ Use the `protoc-gen-ts` tool to generate TypeScript definitions from your gRPC s
 4. Run the following command for each of your gRPC service definitions:
 
    ```shell
-   cd front-end/fe-01-project-one/src/app/proto/
+   cd src/app/proto/
    protoc-gen-ts --ts_out=import_style=commonjs,binary:. authentication.proto
    ```
 

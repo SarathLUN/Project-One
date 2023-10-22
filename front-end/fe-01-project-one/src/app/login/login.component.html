@@ -1,10 +1,11 @@
-<p>login works!</p>
+<!-- src/app/login/login.component.html -->
+
 <div>
-  <label>Username:</label>
-  <input [(ngModel)]="username" />
-  <br />
-  <label>Password:</label>
-  <input [(ngModel)]="password" type="password" />
-  <br />
-  <button (click)="login()">Login</button>
+  <label for="username">Username:</label>
+  <input type="text" id="username" [(ngModel)]="username" />
 </div>
+<div>
+  <label for="password">Password:</label>
+  <input type="password" id="password" [(ngModel)]="password" />
+</div>
+<button (click)="login()">Login</button>

@@ -28,7 +28,8 @@ func generateDummyToken() string {
 }
 
 func main() {
-	lis, err := net.Listen("tcp", ":50051")
+	serverPort := ":50051"
+	lis, err := net.Listen("tcp", serverPort)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
@@ -39,7 +40,7 @@ func main() {
 	// Register the reflection service with the gRPC server
 	reflection.Register(s)
 
-	log.Printf("Server listening on :50051")
+	log.Printf("Server listening on port %s\n", serverPort)
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}

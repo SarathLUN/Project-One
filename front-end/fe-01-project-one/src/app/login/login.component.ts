@@ -1,34 +1,44 @@
-// login.component.ts
-import { Component } from '@angular/core';
-import { GrpcAuthService } from '../path-to-your-grpc-auth-service'; // Adjust the path
+// src/app/login/login.component.ts
+import { Component, OnInit } from '@angular/core';
+import { AuthServiceClient, ServiceError } from '../proto/generated/authentication_pb_service';
+import { LoginRequest, LoginResponse } from '../proto/generated/authentication_pb';
+import { grpc } from "@improbable-eng/grpc-web";
 
 @Component({
   selector: 'app-login',
-  template: `
-    <div>
-      <label>Username:</label>
-      <input [(ngModel)]="username" />
-      <br />
-      <label>Password:</label>
-      <input [(ngModel)]="password" type="password" />
-      <br />
-      <button (click)="login()">Login</button>
-    </div>
-  `,
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  username: string = '';
-  password: string = '';
+export class LoginComponent implements OnInit {
+  private authService: AuthServiceClient;
+  public username: string = '';
+  public password: string = '';
 
-  constructor(private grpcAuthService: GrpcAuthService) {}
+  constructor() {
+    // Replace 'http://localhost:8080' with your actual backend server URL
+    this.authService = new AuthServiceClient('http://localhost:8080', {});
+  }
 
-  login() {
-    this.grpcAuthService.login(this.username, this.password)
-      .then(response => {
-        console.log('Login successful! Token:', response.getToken());
-      })
-      .catch(error => {
-        console.error('Login failed:', error);
-      });
+  ngOnInit(): void {
+  }
+
+  login(): void {
+    const request = new LoginRequest();
+    request.setUsername(this.username);
+    request.setPassword(this.password);
+
+    const metadata = new grpc.Metadata(); // Create a new instance of grpc.Metadata
+
+    this.authService.login(request, metadata, (err: ServiceError | null, response: LoginResponse | null) => {
+      if (err) {
+        console.error('Error:', err.message);
+      } else if (response) {
+        console.log('Response:', response.toObject());
+        // Handle successful login response here
+      } else {
+        console.error('Unexpected null response');
+      }
+    });
   }
 }
+
